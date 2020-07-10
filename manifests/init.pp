@@ -3,8 +3,8 @@
 # Manage the VMware Horizon View PCoIP settings for internal and external connections
 
 class vmware_horizon_view (
-    $external_broker_dns_name = "myexternalbroker.test.com",
-    $internal_broker_dns_name = "myinternalbroker.test.com",
+    $external_broker_dns_name = 'myexternalbroker.test.com',
+    $internal_broker_dns_name = 'myinternalbroker.test.com',
     $external_stop_tpservices = true,
     $internal_stop_tpservices = false,
     $external_enable_build_to_lossless = true,
@@ -37,9 +37,9 @@ class vmware_horizon_view (
     }
 
     registry_value { 'HKLM\SOFTWARE\VMware, Inc.\VMware VDM\ScriptEvents\StartSession\Bullet1':
-        ensure => present,
-        type   => string,
-        data   => "wscript \"${script}\"",
+        ensure  => present,
+        type    => string,
+        data    => "wscript \"${script}\"",
         require => Registry_key['HKLM\SOFTWARE\VMware, Inc.\VMware VDM\ScriptEvents\StartSession'],
     }
 
@@ -61,7 +61,7 @@ class vmware_horizon_view (
     }
 
     # Check if user is connecting from external vdm broker.
-    if $vdmstartsessionbrokerdnsname == $external_broker_dns_name {
+    if $facts['vdmstartsessionbrokerdnsname'] == $external_broker_dns_name {
       notify { 'User is connecting from external VDM Broker': }
       if $external_stop_tpservices {
         service {'TPAutoConnSvc':
@@ -161,7 +161,7 @@ class vmware_horizon_view (
       }
     }
     # Check if user is connecting from internal vdm broker.
-    elsif $vdmstartsessionbrokerdnsname == $internal_broker_dns_name {
+    elsif $facts['vdmstartsessionbrokerdnsname'] == $internal_broker_dns_name {
       notify { 'User is connecting from internal VDM Broker': }
       if $internal_stop_tpservices == true {
         service {'TPAutoConnSvc':

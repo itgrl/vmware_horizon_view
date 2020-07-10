@@ -7,13 +7,36 @@
   "source": "https://github.com/Andulla/vmware_horizon_view",
   "project_page": "https://github.com/Andulla/vmware_horizon_view",
   "issues_url": "https://github.com/Andulla/vmware_horizon_view/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.9.0 < 7.0.0"
+    },
+    {
+        "name": "puppetlabs-registry",
+        "version_requirement": ">= 3.1.0 < 4.0.0"
+    },
+    {
+        "name": "puppetlabs-powershell",
+        "version_requirement": ">= 4.0.0 < 5.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
-    "operatingsystem":"windows",
-    "operatingsystemrelease":[ "2008R2", "2012R2" ]
+      "operatingsystem": "windows",
+      "operatingsystemrelease": [
+        "2008R2",
+        "2012R2"
+      ]
     }
-   ],
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 4.9.0 <6.0.0"}
-  ]
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.17.0",
+  "template-url": "pdk-default#1.17.0",
+  "template-ref": "tags/1.17.0-0-gd3a4319"
 }
